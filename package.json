@@ -1,0 +1,24 @@
+{
+  "name": "AIMing-For-Success",
+  "version": "1.0.0",
+  "description": "- An AOL Instant Messenger Clone",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warrendugan/AIMing-For-Success.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warrendugan/AIMing-For-Success/issues"
+  },
+  "homepage": "https://github.com/warrendugan/AIMing-For-Success#readme",
+  "devDependencies": {
+    "electron": "^1.4.15",
+    "menubar": "^5.2.0"
+  }
+}
