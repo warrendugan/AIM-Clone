@@ -2,9 +2,10 @@
   "name": "AIMing-For-Success",
   "version": "1.0.0",
   "description": "- An AOL Instant Messenger Clone",
-  "main": "index.js",
+  "main": "build/shell/index.js",
   "scripts": {
-    "start": "electron index.js"
+    "start": "electron build/shell/index.js",
+    "build": "./scripts/build.sh"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,15 @@
   },
   "homepage": "https://github.com/warrendugan/AIMing-For-Success#readme",
   "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.0.0",
     "electron": "^1.4.15",
     "electron-reload": "^1.1.0",
     "menubar": "^5.2.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
