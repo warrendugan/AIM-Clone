@@ -1,7 +1,6 @@
 const { app, Tray, Menu, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
-require('electron-reload')(__dirname)
 const iconPath = path.join(__dirname, 'icons/icon.png')
 let appIcon = null
 let win = null
@@ -13,6 +12,17 @@ const createWindow = () => {
     height: 600,
     resizable: false,
     backgroundColor: '#ECE9D7'
+  })
+
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  //mainWindow.loadURL('http://localhost:3000')
+
+  mainWindow.on('closed', () => {
+    mainWindow = null
   })
 
   win = new BrowserWindow({show: false})
@@ -32,18 +42,8 @@ const createWindow = () => {
       selector: 'terminate:',
     }
   ])
-  appIcon.setToolTip('AIM For Success.')
+  appIcon.setToolTip('AIM For Success')
   appIcon.setContextMenu(contextMenu)
-
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
 }
 
 app.on('ready', createWindow)

@@ -1,6 +1,9 @@
 const React = require('react')
+const { connect } = require('react-redux')
+const Login = require('../login')
 
-module.exports = () => (
-  <div>
-  </div>
-)
+exports.App = () => {
+  return (
+    <Login/>
+  )
+}

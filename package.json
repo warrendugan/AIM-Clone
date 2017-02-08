@@ -4,7 +4,7 @@
   "description": "- An AOL Instant Messenger Clone",
   "main": "build/shell/index.js",
   "scripts": {
-    "start": "electron build/shell/index.js",
+    "start": "node build/server/index.js & electron build/shell/index.js",
     "build": "./scripts/build.sh"
   },
   "repository": {
@@ -22,12 +22,14 @@
     "babel-plugin-transform-react-jsx": "^6.22.0",
     "babelify": "^7.3.0",
     "browserify": "^14.0.0",
-    "electron": "^1.4.15",
-    "electron-reload": "^1.1.0",
-    "menubar": "^5.2.0"
+    "electron": "^1.4.15"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
   }
 }
