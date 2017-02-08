@@ -6,7 +6,7 @@ const router = new Router()
 router.get('/users', (req, res) => {
   users
     .getAll()
-    .then(notes => res.json(users))
+    .then(users => res.json(users))
 })
 
 router.post('/users', ({ body }, res) => {

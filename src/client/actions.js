@@ -1,6 +1,6 @@
 const usersLoaded = users => ({ type: 'USER_LOADED', users})
 
-const loadUsers = () dispatch => {
+const loadUsers = () => dispatch => {
   fetch('/users', {
     headers: {
       'Accept': 'application/json'

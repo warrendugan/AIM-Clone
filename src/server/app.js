@@ -7,6 +7,6 @@ const app = express()
   .use('/', (req, res) => {
     res.sendStatus(200)
   })
-  //.use('/users', router)
+  .use('/users', router)
 
 module.exports = app

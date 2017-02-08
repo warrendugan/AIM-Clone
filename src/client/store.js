@@ -1,7 +1,11 @@
 const { createStore, combineReducers } = require('redux')
-const { count, clicks } = require('./reducers')
+const { users, addUser, selectUser, currentView } = require('./reducers')
 
-const reducer = combineReducers({ count, clicks })
+const reducer = combineReducers({ users, addUser, selectUser, currentView })
+
+// const initialState = {
+//   users: ['test']
+// }
 
 const store = createStore(reducer)
 
