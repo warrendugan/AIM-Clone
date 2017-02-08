@@ -1,39 +1,43 @@
 const React = require('react')
+const { connect } = require('react-redux')
 
-const login = () => (
+const Login = ({ users: screenNames, addUser, selectUser }) => (
   <div>
     <img id="logo" src="./icons/login.png"/>
-      <form onSubmit = { this.handleSubmit }>
+    <div id="select-label">
+      <label>Select User</label>
+    </div>
+    <div>
+      <select autoFocus>
+        {
+          screenNames.map((screenName, i)=> (
+            <option key={ i } onSelect={ selectUser } value={ screenName }>{ screenName }</option>
+          ))
+        }
+      </select>
+    </div>
+      <form onSubmit={ addUser }>
         <div id="login">
           <div>
-            <label>ScreenName</label>
+            <label>Add User</label>
           </div>
           <div>
-            <select>
-              <option value=" "> </option>
-            </select>
-          </div>
-          <div>
-            <input type="text" autoFocus onChange = {  }/>
+            <input type="text"/>
           </div>
         </div>
-        <input id="submit" type="submit" value="Submit"/>
+        <input id="submit" type="submit" value="submit"/>
       </form>
-    <div id="version">Version 1.999</div>
+    <div id="version">{' Version 1.9.9.9 '}</div>
   </div>
 )
 
-const mapState = state => {
-  return {
-
-  }
-}
+const mapState = ({ users }) => ({ users })
 
 const mapDispatch = dispatch => {
   return {
-    addUser: dispatch({ type: 'ADD-USER' }),
-    typeAhead: dispatch({ type: 'TYPE-AHEAD' })
+    addUser: value => dispatch({ type: 'ADD-USER', view: 'login', value }),
+    selectUser: value => dispatch({ type: 'SELECT-USER', view: 'account', value })
   }
 }
 
-module.exports = connect(mapState, mapDispatch)(login)
+module.exports = connect(mapState, mapDispatch)(Login)

@@ -1,9 +1,17 @@
-exports.userBase = (state = 0, action) => {
-  switch (action.type) {
+exports.users = (state = ['test'], action) => {
+  switch(action.type) {
     case 'ADD-USER': {
+      return state.concat(action.value)
+    }
+    default: {
       return state
     }
-    case 'TYPE-AHEAD': {
+  }
+}
+
+exports.addUser = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD-USER': {
       return state
     }
     default:
@@ -11,9 +19,23 @@ exports.userBase = (state = 0, action) => {
   }
 }
 
-exports.clicks = (state = 0, action) => {
+exports.selectUser = (state = 0, action) => {
   switch (action.type) {
+    case 'SELECT-USER': {
+      return state
+    }
     default:
       return state
+  }
+}
+
+exports.currentView = (state = 'login', action) => {
+  switch(action.type) {
+    case 'VIEW-CHANGED': {
+      return 'action.view'
+    }
+    default: {
+      return state
+    }
   }
 }

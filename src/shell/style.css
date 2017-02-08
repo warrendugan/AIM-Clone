@@ -4,6 +4,15 @@
   font-family: sans-serif;
 }
 
+#select-label {
+  margin-top: 20px;
+}
+
+select {
+  width: 95%;
+  margin-bottom: 20px;
+}
+
 #logo {
   display: block;
   margin-top: 40px;
