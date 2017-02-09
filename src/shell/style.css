@@ -1,0 +1,39 @@
+#body {
+  position: relative;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+select {
+  width: 95%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#logo {
+  display: block;
+  margin-top: 40px;
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+}
+
+#version {
+  position: absolute;
+  bottom: 10px;
+  width: 95%;
+  text-align: center;
+  font-style: italic;
+  bottom: 50px;
+}
+
+#buddie-list {
+  border: 1px solid lightgrey;
+  background-color: white;
+  width: 95%;
+  text-align: center;
+}
+
+#buddie-list div:nth-child(odd) {
+  background-color: yellow;
+}
