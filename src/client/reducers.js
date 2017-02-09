@@ -1,38 +1,15 @@
-exports.users = (state = ['test'], action) => {
+exports.users = (state = ['test', 'other', 'sKa4LyfE', 'hoMie4u', 'sk8erz'], action) => {
   switch(action.type) {
-    case 'ADD-USER': {
-      return state.concat(action.value)
-    }
     default: {
       return state
     }
   }
 }
 
-exports.addUser = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD-USER': {
-      return state
-    }
-    default:
-      return state
-  }
-}
-
-exports.selectUser = (state = 0, action) => {
-  switch (action.type) {
-    case 'SELECT-USER': {
-      return state
-    }
-    default:
-      return state
-  }
-}
-
-exports.currentView = (state = 'login', action) => {
+exports.currentView = (state = null, action) => {
   switch(action.type) {
     case 'VIEW-CHANGED': {
-      return 'action.view'
+      return action.view
     }
     default: {
       return state
