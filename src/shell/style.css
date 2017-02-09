@@ -4,24 +4,18 @@
   font-family: sans-serif;
 }
 
+select {
+  width: 95%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 #logo {
   display: block;
   margin-top: 40px;
   width: 100%;
   padding-bottom: 20px;
   border-bottom: 1px solid lightgrey;
-}
-
-#login input {
-  font-size: 18px;
-  width: 95%;
-}
-
-#submit {
-  display: block;
-  margin-top: 20px;
-  margin-right: 10px;
-  margin-left: auto;
 }
 
 #version {
@@ -31,4 +25,15 @@
   text-align: center;
   font-style: italic;
   bottom: 50px;
+}
+
+#buddie-list {
+  border: 1px solid lightgrey;
+  background-color: white;
+  width: 95%;
+  text-align: center;
+}
+
+#buddie-list div:nth-child(odd) {
+  background-color: yellow;
 }
