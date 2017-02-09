@@ -14,10 +14,4 @@ const Account = ({ screenNames }) => (
 
 const mapState = ({ users: screenNames }) => ({ screenNames })
 
-const mapDispatch = dispatch => {
-  return {
-    dispatch
-  }
-}
-
-module.exports = connect(mapState, mapDispatch)(Account)
+module.exports = connect(mapState)(Account)
