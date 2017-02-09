@@ -7,10 +7,10 @@ const mapState = ({ currentView }) => ({ currentView })
 
 const View = ({ currentView }) => {
   switch(currentView) {
-    case 'account': {
+    case 'ACCOUNT': {
       return <Account/>
     }
-    case 'login': {
+    case 'LOGIN': {
       return <Login/>
     }
     default: {

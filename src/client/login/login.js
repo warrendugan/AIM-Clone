@@ -1,43 +1,34 @@
 const React = require('react')
 const { connect } = require('react-redux')
 
-const Login = ({ users: screenNames, addUser, selectUser }) => (
+const Login = ({ users, handleSubmit }) => (
   <div>
     <img id="logo" src="./icons/login.png"/>
-    <div id="select-label">
-      <label>Select User</label>
-    </div>
     <div>
-      <select autoFocus>
-        {
-          screenNames.map((screenName, i)=> (
-            <option key={ i } onSelect={ selectUser } value={ screenName }>{ screenName }</option>
-          ))
-        }
-      </select>
-    </div>
-      <form onSubmit={ addUser }>
-        <div id="login">
-          <div>
-            <label>Add User</label>
-          </div>
-          <div>
-            <input type="text"/>
-          </div>
-        </div>
-        <input id="submit" type="submit" value="submit"/>
+      <form onChange={ handleSubmit }>
+        <select autoFocus required defaultValue=" ">
+        <option value=" " disabled>{' Select ScreenName '}</option>
+          {
+            users.map((screenName, i)=> (
+              <option key={ i } value={ screenName }>
+                { screenName }
+              </option>
+            ))
+          }
+        </select>
       </form>
+    </div>
     <div id="version">{' Version 1.9.9.9 '}</div>
   </div>
 )
 
 const mapState = ({ users }) => ({ users })
 
-const mapDispatch = dispatch => {
-  return {
-    addUser: value => dispatch({ type: 'ADD-USER', view: 'login', value }),
-    selectUser: value => dispatch({ type: 'SELECT-USER', view: 'account', value })
+const mapDispatch = dispatch => ({
+  handleSubmit: () => {
+    event.preventDefault()
+    dispatch({ type: 'VIEW-CHANGED', view: 'ACCOUNT'})
   }
-}
+})
 
 module.exports = connect(mapState, mapDispatch)(Login)

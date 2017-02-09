@@ -5,7 +5,8 @@
   "main": "build/shell/index.js",
   "scripts": {
     "start": "node build/server/index.js & electron build/shell/index.js",
-    "build": "./scripts/build.sh"
+    "build": "./scripts/build.sh",
+    "dev": "run-s build start"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,8 @@
     "electron": "^1.4.15",
     "eslint": "^3.15.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-react": "^6.9.0",
+    "npm-run-all": "^4.0.1"
   },
   "dependencies": {
     "body-parser": "^1.16.0",

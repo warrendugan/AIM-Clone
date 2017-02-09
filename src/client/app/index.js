@@ -1,10 +1,5 @@
 const React = require('react')
-//const { connect } = require('react-redux')
-const Login = require('../login')
+const View = require('../view')
 
 // eslint-disable-next-line
-exports.App = () => {
-  return (
-    <Login/>
-  )
-}
+exports.App = () => <View/>

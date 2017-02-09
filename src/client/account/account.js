@@ -3,13 +3,16 @@ const { connect } = require('react-redux')
 
 const Account = ({ screenNames }) => (
   <div>
-    {
-      screenNames.map(screenName => (<div> { screenName } </div>))
-    }
+    <img id="logo" src="./icons/login.png"/>
+    <div id="buddie-list">
+      {
+        screenNames.map((screenName, i) => (<div key={ i }> { screenName } </div>))
+      }
+    </div>
   </div>
 )
 
-const mapState = ({ screenNames }) => ({ screenNames })
+const mapState = ({ users: screenNames }) => ({ screenNames })
 
 const mapDispatch = dispatch => {
   return {
