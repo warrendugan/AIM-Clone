@@ -1,6 +1,9 @@
 
 node_modules/
 
+<<<<<<< HEAD
 .DS_Store
 
 build/
+=======
+>>>>>>> master
