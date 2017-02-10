@@ -10,7 +10,10 @@ const createWindow = () => {
     width: 300,
     height: 600,
     resizable: false,
-    backgroundColor: '#ECE9D7'
+    backgroundColor: '#ECE9D7',
+    webPreferences: {
+      devTools: true
+    }
   })
 
   mainWindow.loadURL(url.format({
@@ -22,6 +25,8 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  mainWindow.webContents.openDevTools()
 
   let appIcon = new Tray(iconPath)
   var contextMenu = Menu.buildFromTemplate([

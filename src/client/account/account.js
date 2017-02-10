@@ -8,15 +8,18 @@ const Account = ({ users, handleClick }) => (
     <div id="buddie-list"> {
       users
         .filter(user => (user.selected ? null : user))
-        .map(({ screenName, id }) => (
-          <div key={ id }> { screenName } </div>))}
+        .map((user, i) => (
+          <div key={ i }> { user.screenName } </div>))}
     </div>
   </div>
 )
 
 const mapState = ({ users }) => ({ users })
 const mapDispatch = dispatch => ({
-  handleClick: () => dispatch({ type: 'VIEW-CHANGED', view: 'LOGIN' })
+  handleClick: () => {
+    dispatch({ type: 'USER-UNSELECTED'})
+    dispatch({ type: 'VIEW-CHANGED', view: 'LOGIN' })
+  }
 })
 
 module.exports = connect(mapState, mapDispatch)(Account)
