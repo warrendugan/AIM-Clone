@@ -1,40 +1,20 @@
-const { createStore, combineReducers } = require('redux')
+const { createStore, combineReducers, applyMiddleware } = require('redux')
 const { users, currentView } = require('./reducers')
+const { default: thunk } = require('redux-thunk')
 
 const reducer = combineReducers({ users, currentView })
 
 const initialState = {
   users: [
     {
-      id: 1,
-      screenName: 'test',
-      selected: false,
-      buddies: []
-    }, {
-      id: 2,
-      screenName: 'other',
-      selected: false,
-      buddies: []
-    }, {
-      id: 3,
-      screenName: 'sKa4LyfE',
-      selected: false,
-      buddies: []
-    }, {
-      id: 4,
-      screenName: 'hoMie4u',
-      selected: false,
-      buddies: []
-    }, {
-      id: 5,
-      screenName: 'sk8erz',
-      selected: false,
-      buddies: []
-    }
-  ],
-  currentView: 'LOGIN'
+      id: null,
+      screenName: null,
+      selected: null,
+      buddies: [null]
+    }],
+  currentView: null
 }
 
-const store = createStore(reducer, initialState)
+const store = createStore(reducer, initialState, applyMiddleware(thunk))
 
 module.exports = store

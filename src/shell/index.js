@@ -16,11 +16,13 @@ const createWindow = () => {
     }
   })
 
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  mainWindow.loadURL('http://localhost:3000')
+
+  // mainWindow.loadURL(url.format({
+  //   pathname: path.join(__dirname, 'index.html'),
+  //   protocol: 'file:',
+  //   slashes: true
+  // }))
 
   mainWindow.on('closed', () => {
     mainWindow = null
