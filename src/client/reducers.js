@@ -1,4 +1,4 @@
-exports.users = (state = ['test', 'other', 'sKa4LyfE', 'hoMie4u', 'sk8erz'], action) => {
+exports.users = (state = null, action) => {
   switch(action.type) {
     default: {
       return state
