@@ -1,6 +1,6 @@
 # AIMing For Success
 - An AOL Instant Messenger Clone
 
-The birthplace of shitty usernames
+An electron app clone of AIM
 
 ![Throwback](http://i.imgur.com/HXtCS3w.png)
