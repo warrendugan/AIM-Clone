@@ -1,5 +1,6 @@
 const React = require('react')
 const { connect } = require('react-redux')
+const { selectUser } = require('./actions')
 
 const Login = ({ users, handleSubmit }) => (
   <div>
@@ -32,7 +33,7 @@ const mapDispatch = dispatch => ({
     const { selectedUser: user } = {
       selectedUser: formData.get('selectedUser')
     }
-    dispatch({ type: 'USER-SELECTED', user })
+    dispatch(selectUser(user))
     dispatch( { type: 'VIEW-CHANGED', view: 'ACCOUNT' })
   }
 })

@@ -1,4 +1,4 @@
-const usersLoaded = users => ({ type: 'USER-LOADED', users})
+const usersLoaded = users => ({ type: 'USERS-LOADED', users })
 
 const loadUsers = () => dispatch => {
   fetch('/users', {

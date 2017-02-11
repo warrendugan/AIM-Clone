@@ -3,12 +3,9 @@ const bodyParser = require('body-parser')
 const router = require('./router')
 const path = require('path')
 
-// __dirname = /Users/warren/Code/AIMing-For-Success/build/server
-
-
 const app = express()
   .use(bodyParser.json())
-  .use(express.static(path.resolve(__dirname + '/../shell')))
+  .use(express.static(path.resolve(__dirname + '/../client')))
   .use('/users', router)
 
 module.exports = app

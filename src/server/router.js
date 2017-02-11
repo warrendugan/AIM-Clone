@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', ({ body }, res) => {
+  console.log(body)
   users
     .selectUser(body)
     .then(selectedUser => res.status(201).json(selectedUser))
