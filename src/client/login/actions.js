@@ -3,7 +3,7 @@ const userSelected = users => ({ type: 'USER-SELECTED', users })
 const selectUser = () => (dispatch, getState) => {
   const { selectedUser } = getState()
   fetch('/users', {
-    method: 'POST',
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ selectedUser })
   })

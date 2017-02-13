@@ -9,16 +9,16 @@ router.get('/', (req, res) => {
     .then(users => res.json(users))
 })
 
-router.post('/', ({ body }, res) => {
+router.put('/', ({ body }, res) => {
   users
     .selectUser(body)
-    .then(selectedUser => res.status(201).json(selectedUser))
+    .then(selectedUser => res.status(200).json(selectedUser))
 })
 
-router.post('/undo', (req, res) => {
+router.put('/undo', (req, res) => {
   users
     .deselectUser()
-    .then(users => res.status(201).json(users))
+    .then(users => res.status(200).json(users))
 })
 
 module.exports = router

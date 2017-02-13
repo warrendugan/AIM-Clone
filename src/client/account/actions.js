@@ -3,7 +3,7 @@ const unselectUser = () => ({ type: 'UNSELECTED-USER' })
 
 const deselectUser = () => (dispatch) => {
   fetch('/users/undo', {
-    method: 'POST',
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' }
   })
   .then(res => res.json())
