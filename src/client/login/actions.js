@@ -1,16 +1,22 @@
-const userSelected = user => ({ type: 'USER-SELECTED', user })
+const userSelected = users => ({ type: 'USER-SELECTED', users })
 
-const selectUser = selectedUser => {
+const selectUser = () => (dispatch, getState) => {
+  const { selectedUser } = getState()
   fetch('/users', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ selectedUser })
   })
   .then(res => res.json())
-  .then(user => dispatch(userSelected(user)))
+  .then(users => dispatch(userSelected(users)))
 }
+
+const changeUser = user => ({ type: 'SELECTED-USER', user })
+
+const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
 
 module.exports = {
   selectUser,
-  userSelected
+  changeUser,
+  accountView
 }

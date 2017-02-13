@@ -1,13 +1,13 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { selectUser } = require('./actions')
+const { selectUser, changeUser, accountView } = require('./actions')
 
-const Login = ({ users, handleSubmit }) => (
+const Login = ({ users, handleSubmit, handleChange }) => (
   <div>
     <img id="logo" src="./icons/login.png"/>
     <div>
       <form onSubmit={ handleSubmit }>
-        <select name="selectedUser" autoFocus required defaultValue=" ">
+        <select onChange={ handleChange } name="selectedUser" autoFocus required defaultValue=" ">
         <option value=" " disabled>{' Select ScreenName '}</option>
           {
             users.map((user, i) => {
@@ -27,6 +27,9 @@ const Login = ({ users, handleSubmit }) => (
 const mapState = ({ users }) => ({ users })
 
 const mapDispatch = dispatch => ({
+  handleChange: event => {
+    dispatch(changeUser(event.target.value))
+  },
   handleSubmit: event => {
     event.preventDefault()
     const formData = new FormData(event.target)
@@ -34,7 +37,7 @@ const mapDispatch = dispatch => ({
       selectedUser: formData.get('selectedUser')
     }
     dispatch(selectUser(user))
-    dispatch( { type: 'VIEW-CHANGED', view: 'ACCOUNT' })
+    dispatch(accountView())
   }
 })
 

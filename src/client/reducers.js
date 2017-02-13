@@ -1,12 +1,10 @@
 exports.users = (state = null, action) => {
   switch(action.type) {
     case 'USER-SELECTED': {
-      console.log(action.user) // eslint-disable-line
-      return [
-        ...state.slice(0, action.user.id),
-        action.user,
-        ...state.slice(action.user.id + 1)
-      ]
+      return action.users
+    }
+    case 'USER-UNSELECTED': {
+      return action.users
     }
     case 'USERS-LOADED': {
       return action.users
@@ -21,6 +19,20 @@ exports.currentView = (state = null, action) => {
   switch(action.type) {
     case 'VIEW-CHANGED': {
       return action.view
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+exports.selectedUser = (state = null, action) => {
+  switch(action.type) {
+    case 'SELECTED-USER': {
+      return action.user
+    }
+    case 'UNSELECTED-USER': {
+      return null
     }
     default: {
       return state

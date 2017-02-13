@@ -10,10 +10,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', ({ body }, res) => {
-  console.log(body)
   users
     .selectUser(body)
     .then(selectedUser => res.status(201).json(selectedUser))
+})
+
+router.post('/undo', (req, res) => {
+  users
+    .deselectUser()
+    .then(users => res.status(201).json(users))
 })
 
 module.exports = router

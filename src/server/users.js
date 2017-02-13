@@ -33,16 +33,22 @@ module.exports = {
     return Promise.resolve(this.users.slice())
   },
 
-  selectUser(selectedUser) {
-    console.log(selectedUser)
-    console.log(this.users)
-    selectedUser = this.users.filter((user) => ((user.screenName.indexOf(selectedUser) > -1) ? user : null))
-    console.log(selectedUser)
-    selectedUser[0] = Object.assign({}, selectedUser[0], {
-      selected: true
+  selectUser({ selectedUser }) {
+    this.users.forEach(user => {
+      if(user.screenName.indexOf(selectedUser) > -1) {
+        user.selected = true
+      }
     })
-    console.log(selectedUser)
-    return Promise.resolve(selectedUser)
+    return Promise.resolve(this.users)
+  },
+
+  deselectUser() {
+    this.users.forEach(user => {
+      if(user.selected) {
+        user.selected = false
+      }
+    })
+    return Promise.resolve(this.users)
   }
 
 }
