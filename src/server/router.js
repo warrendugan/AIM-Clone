@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.put('/', ({ body }, res) => {
   users
     .selectUser(body)
-    .then(selectedUser => res.status(200).json(selectedUser))
+    .then(users => res.status(200).json(users))
 })
 
 router.put('/undo', (req, res) => {

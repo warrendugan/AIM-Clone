@@ -19,35 +19,22 @@ const knex = require('knex')({
 module.exports = {
 
   getAll() {
-    return knex.select('id', 'screen_name').from('users')
-      .then(users => users.map(({ id, screen_name }) => ({ id, screenName: screen_name })))
+    return knex.select('id', 'screen_name', 'selected').from('users')
+      .then(users => users.map(({ id, screen_name, selected }) => ({ id, screenName: screen_name, selected })))
       .then(users => Promise.resolve(users))
   },
 
   selectUser({ selectedUser }) {
-    // console.log(selectedUser) // eslint-disable-line
-    return knex
-      .where('screen_name', selectedUser)
+    return knex('users')
       .update({ selected: true })
-      .returning('id', 'screen_name', 'selected')
-      .then(users => console.log(users)) // eslint-disable-line
-      .then(users => users.map(({ id, screen_name, selected }) => ({ id, screenName: screen_name, selected })))
-      .then(users => Promise.resolve(users))
-    // this.users.forEach(user => {
-    //   if(user.screenName.indexOf(selectedUser) > -1) {
-    //     user.selected = true
-    //   }
-    // })
-    // return Promise.resolve(this.users)
+      .where('screen_name', selectedUser)
+      .then(() => (this.getAll()))
   },
 
   deselectUser() {
-    this.users.forEach(user => {
-      if(user.selected) {
-        user.selected = false
-      }
-    })
-    return Promise.resolve(this.users)
+    return knex('users')
+      .update({ selected: false })
+      .where({ selected: true })
+      .then(() => (this.getAll()))
   }
-
 }
