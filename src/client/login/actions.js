@@ -8,10 +8,6 @@ const selectUser = () => (dispatch, getState) => {
     body: JSON.stringify({ selectedUser })
   })
   .then(res => res.json())
-  .then(users => {
-    console.log(users) // eslint-disable-line
-    return users
-  })
   .then(users => dispatch(userSelected(users)))
 }
 
