@@ -1,7 +1,6 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const { deselectUser, loginView } = require('./actions')
-const { loadUsers } = require('../actions')
 
 const Account = ({ users, handleClick }) => (
   <div>
@@ -17,6 +16,7 @@ const Account = ({ users, handleClick }) => (
 )
 
 const mapState = ({ users }) => ({ users })
+
 const mapDispatch = dispatch => ({
   handleClick: () => {
     dispatch(deselectUser())
