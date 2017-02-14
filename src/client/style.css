@@ -33,7 +33,3 @@ select {
   width: 95%;
   text-align: center;
 }
-
-#buddie-list div:nth-child(odd) {
-  background-color: yellow;
-}

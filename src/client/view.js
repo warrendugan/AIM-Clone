@@ -14,6 +14,7 @@ const View = ({ currentView }) => {
       return <Login/>
     }
     default: {
+      console.log('Landed in default') // eslint-disable-line
       return <Login/>
     }
   }

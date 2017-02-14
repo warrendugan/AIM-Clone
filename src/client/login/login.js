@@ -1,21 +1,23 @@
 const React = require('react')
 const { connect } = require('react-redux')
+const { selectUser, changeUser, accountView } = require('./actions')
 
-const Login = ({ users, handleSubmit }) => (
+const Login = ({ users, handleSubmit, handleChange }) => (
   <div>
     <img id="logo" src="./icons/login.png"/>
     <div>
-      <form onChange={ handleSubmit }>
-        <select autoFocus required defaultValue=" ">
+      <form onSubmit={ handleSubmit }>
+        <select onChange={ handleChange } name="selectedUser" autoFocus required defaultValue=" ">
         <option value=" " disabled>{' Select ScreenName '}</option>
           {
-            users.map((screenName, i)=> (
-              <option key={ i } value={ screenName }>
-                { screenName }
-              </option>
-            ))
-          }
+            users.map((user, i) => {
+              return (
+                <option id={ user.id } key={ i } value={ user.screenName }>
+                  { user.screenName }
+                </option>
+              )})}
         </select>
+        <input type="submit"/>
       </form>
     </div>
     <div id="version">{' Version 1.9.9.9 '}</div>
@@ -25,9 +27,17 @@ const Login = ({ users, handleSubmit }) => (
 const mapState = ({ users }) => ({ users })
 
 const mapDispatch = dispatch => ({
-  handleSubmit: () => {
+  handleChange: event => {
+    dispatch(changeUser(event.target.value))
+  },
+  handleSubmit: event => {
     event.preventDefault()
-    dispatch({ type: 'VIEW-CHANGED', view: 'ACCOUNT'})
+    const formData = new FormData(event.target)
+    const { selectedUser: user } = {
+      selectedUser: formData.get('selectedUser')
+    }
+    dispatch(selectUser(user))
+    dispatch(accountView())
   }
 })
 

@@ -1,6 +1,5 @@
 const { app, Tray, Menu, BrowserWindow } = require('electron')
 const path = require('path')
-const url = require('url')
 const iconPath = path.join(__dirname, 'icons/icon.png')
 
 let mainWindow = null
@@ -10,18 +9,19 @@ const createWindow = () => {
     width: 300,
     height: 600,
     resizable: false,
-    backgroundColor: '#ECE9D7'
+    backgroundColor: '#ECE9D7',
+    webPreferences: {
+      devTools: true
+    }
   })
 
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  mainWindow.loadURL('http://localhost:3000')
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  mainWindow.webContents.openDevTools()
 
   let appIcon = new Tray(iconPath)
   var contextMenu = Menu.buildFromTemplate([

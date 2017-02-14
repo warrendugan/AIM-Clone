@@ -4,6 +4,10 @@
   "description": "- An AOL Instant Messenger Clone",
   "main": "build/shell/index.js",
   "scripts": {
+    "migrate:make": "knex migrate:make",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
     "start": "node build/server/index.js & electron build/shell/index.js",
     "build": "./scripts/build.sh",
     "dev": "run-s build start"
@@ -32,12 +36,15 @@
   },
   "dependencies": {
     "body-parser": "^1.16.0",
+    "electron-reload": "^1.1.0",
     "express": "^4.14.1",
+    "knex": "^0.12.6",
+    "menubar": "^5.2.0",
+    "pg": "^6.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "electron-reload": "^1.1.0",
-    "menubar": "^5.2.0"
+    "redux-thunk": "^2.2.0"
   }
 }
