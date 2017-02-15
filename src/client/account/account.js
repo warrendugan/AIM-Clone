@@ -1,11 +1,12 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { deselectUser, loginView } = require('./actions')
+const { deselectUser, loginView, addSearchText, searchView } = require('./actions')
 
-const Account = ({ users, handleClick }) => (
+const Account = ({ users, handleClick, handleChange, searchValue }) => (
   <div>
     <button onClick={ handleClick }>{' Back '}</button>
     <img id="logo" src="./icons/login.png"/>
+    <input onChange={ handleChange } id="search" type="text" value={ searchValue ? searchValue : '' }/>
     <div id="buddie-list"> {
       users
         .filter(user => (user.selected ? null : user))
@@ -15,12 +16,19 @@ const Account = ({ users, handleClick }) => (
   </div>
 )
 
-const mapState = ({ users }) => ({ users })
+const mapState = ({ users, searchValue }) => ({ users, searchValue })
 
 const mapDispatch = dispatch => ({
+  handleChange: event => {
+    const searchText = event.target.value.trim()
+    if(searchText) {
+      dispatch(addSearchText(searchText))
+      dispatch(searchView)
+    }
+  },
   handleClick: () => {
     dispatch(deselectUser())
-    dispatch(loginView())
+    dispatch(loginView)
   }
 })
 

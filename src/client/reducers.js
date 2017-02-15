@@ -39,3 +39,14 @@ exports.selectedUser = (state = null, action) => {
     }
   }
 }
+
+exports.searchValue = (state = null, action) => {
+  switch(action.type) {
+    case 'SEARCH-NOT-BLANK': {
+      return action.value
+    }
+    default: {
+      return state
+    }
+  }
+}
