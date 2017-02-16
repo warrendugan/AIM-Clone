@@ -6,20 +6,11 @@ const knex = require('knex')({
   }}
 )
 
-//   users: {
-//   id: 'increment',
-//   screen_name: 'string',
-//   selected: 'boolean'
-// }
-//   buddies: {
-//     user_id: 'integer',
-//     buddy_id: 'integer'
-//   }
-
 module.exports = {
 
   getAll() {
-    return knex.select('id', 'screen_name', 'selected').from('users')
+    return knex('users')
+      .select('id', 'screen_name', 'selected')
       .then(users => users.map(({ id, screen_name, selected }) => ({ id, screenName: screen_name, selected })))
       .then(users => Promise.resolve(users))
   },
@@ -36,5 +27,53 @@ module.exports = {
       .update({ selected: false })
       .where({ selected: true })
       .then(() => (this.getAll()))
+  },
+
+  addBuddy({ buddy }) {
+    return knex('users')
+      .select('id')
+      .where({ screen_name: buddy })
+      .then(users => users.map(({ id: buddyId }) => ({ buddyId })))
+      .then(users => users[0])
+      .then(({ buddyId }) => {
+        return knex('users')
+          .select('id')
+          .where({ selected: true })
+          .then(users => users.map(({ id: selectedUserId }) => ({ selectedUserId, buddyId})))
+          .then(users => users[0])
+      })
+      .then(({ selectedUserId, buddyId }) => {
+        buddyId = Number(buddyId)
+        return knex('buddies')
+          .insert({ buddy_id: buddyId })
+          .then(() => {
+            return knex('buddies')
+              .update({ user_id: selectedUserId })
+              .where({ buddy_id: buddyId })
+          })
+      })
+      .then(() => {
+        return knex('buddies')
+          .select('buddy_id')
+          .then(buddies => buddies.map(({ buddy_id }) => buddy_id))
+          .then(buddies => Promise.resolve(buddies))
+      })
+  },
+
+  getBuddies() {
+    return knex('users')
+      .select('id')
+      .where({ selected: true })
+      .then(users => users.map(({ id: selectedUserId }) => ({ selectedUserId })))
+      .then(users => users[0])
+      .then(({ selectedUserId }) => {
+        console.log(selectedUserId) // eslint-disable-line
+        return knex('buddies')
+          .select('buddy_id')
+          .where({ user_id: selectedUserId})
+          .then(buddies => buddies.map(({ buddy_id }) => buddy_id))
+          .then(buddies => Promise.resolve(buddies))
+      })
+      // .catch(() => Promise.resolve(null))
   }
 }

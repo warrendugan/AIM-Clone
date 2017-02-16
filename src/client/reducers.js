@@ -50,3 +50,17 @@ exports.searchValue = (state = null, action) => {
     }
   }
 }
+
+exports.buddies = (state = null, action) => {
+  switch(action.type) {
+    case 'BUDDY-ADDED': {
+      return action.buddies
+    }
+    case 'BUDDIES-LOADED': {
+      return action.buddies
+    }
+    default: {
+      return state
+    }
+  }
+}

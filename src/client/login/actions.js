@@ -11,6 +11,18 @@ const selectUser = () => (dispatch, getState) => {
   .then(users => dispatch(userSelected(users)))
 }
 
+const getBuddies = () => dispatch => {
+  fetch('/users/buddies', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(res => res.json())
+  .then(buddies => dispatch(buddiesLoaded(buddies)))
+}
+
+const buddiesLoaded = buddies => ({ type: 'BUDDIES-LOADED', buddies })
+
 const changeUser = user => ({ type: 'SELECTED-USER', user })
 
 const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
@@ -18,5 +30,6 @@ const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
 module.exports = {
   selectUser,
   changeUser,
-  accountView
+  accountView,
+  getBuddies
 }

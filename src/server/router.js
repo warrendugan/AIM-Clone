@@ -21,4 +21,20 @@ router.put('/undo', (req, res) => {
     .then(users => res.status(200).json(users))
 })
 
+router.post('/addBuddy', ({ body }, res) => {
+  users
+    .addBuddy(body)
+    .then(buddies => res.status(201).json(buddies))
+})
+
+router.get('/buddies', (req, res) => {
+  users
+    .getBuddies()
+    .then(buddies => {
+      console.log(buddies) // eslint-disable-line
+      return buddies
+    })
+    .then(buddies => res.status(201).json(buddies))
+})
+
 module.exports = router
