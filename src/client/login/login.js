@@ -1,6 +1,6 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { selectUser, changeUser, accountView, getBuddies } = require('./actions')
+const { selectUser, changeUser, accountView } = require('./actions')
 
 const Login = ({ users, handleSubmit, handleChange }) => (
   <div>
@@ -37,7 +37,6 @@ const mapDispatch = dispatch => ({
       selectedUser: formData.get('selectedUser')
     }
     dispatch(selectUser(user))
-    dispatch(getBuddies())
     dispatch(accountView())
   }
 })

@@ -1,5 +1,11 @@
 const userSelected = users => ({ type: 'USER-SELECTED', users })
 
+const buddiesLoaded = buddies => ({ type: 'BUDDIES-LOADED', buddies })
+
+const changeUser = user => ({ type: 'SELECTED-USER', user })
+
+const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
+
 const selectUser = () => (dispatch, getState) => {
   const { selectedUser } = getState()
   fetch('/users', {
@@ -9,6 +15,8 @@ const selectUser = () => (dispatch, getState) => {
   })
   .then(res => res.json())
   .then(users => dispatch(userSelected(users)))
+  .then(() => dispatch(getBuddies()))
+
 }
 
 const getBuddies = () => dispatch => {
@@ -21,11 +29,7 @@ const getBuddies = () => dispatch => {
   .then(buddies => dispatch(buddiesLoaded(buddies)))
 }
 
-const buddiesLoaded = buddies => ({ type: 'BUDDIES-LOADED', buddies })
 
-const changeUser = user => ({ type: 'SELECTED-USER', user })
-
-const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
 
 module.exports = {
   selectUser,

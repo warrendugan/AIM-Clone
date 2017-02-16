@@ -67,13 +67,12 @@ module.exports = {
       .then(users => users.map(({ id: selectedUserId }) => ({ selectedUserId })))
       .then(users => users[0])
       .then(({ selectedUserId }) => {
-        console.log(selectedUserId) // eslint-disable-line
         return knex('buddies')
           .select('buddy_id')
           .where({ user_id: selectedUserId})
           .then(buddies => buddies.map(({ buddy_id }) => buddy_id))
           .then(buddies => Promise.resolve(buddies))
       })
-      // .catch(() => Promise.resolve(null))
+      .catch(() => Promise.resolve(null))
   }
 }

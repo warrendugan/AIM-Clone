@@ -29,11 +29,7 @@ const Search = ({ users, handleClick, handleChange, searchValue, buddies }) => (
   </div>
 )
 
-// const mapState = ({ users, searchValue, buddies }) => ({ users, searchValue, buddies })
-const mapState = ({ users, searchValue, buddies }) => {
-  console.log(buddies) // eslint-disable-line
-  return { users, searchValue, buddies }
-}
+const mapState = ({ users, searchValue, buddies }) => ({ users, searchValue, buddies })
 
 const mapDispatch = dispatch => ({
   handleChange: event => {
