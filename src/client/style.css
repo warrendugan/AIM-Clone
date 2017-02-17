@@ -63,8 +63,28 @@ select {
   margin-right: auto;
 }
 
-#result:hover {
-  background-color: blue;
-  color: white;
+#result {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#buddy:hover {
+  border: 1px, solid lightgrey;
+  cursor: default;
+}
+
+#buddy,
+.add-buddy {
+  display: inline-block;
+  margin: 0;
+}
+
+.add-buddy:hover {
   cursor: pointer;
+}
+
+.add-buddy {
+  position: absolute;
+  right: 0;
 }
