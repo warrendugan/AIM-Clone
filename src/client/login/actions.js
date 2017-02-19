@@ -1,26 +1,11 @@
-const userSelected = users => ({ type: 'USER-SELECTED', users })
-
 const buddiesLoaded = buddies => ({ type: 'BUDDIES-LOADED', buddies })
 
-const changeUser = user => ({ type: 'SELECTED-USER', user })
+const userSelected = user => ({ type: 'USER-SELECTED', user })
 
-const accountView = () => ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
+const viewChanged = view => ({ type: 'VIEW-CHANGED', view })
 
-const selectUser = () => (dispatch, getState) => {
-  const { selectedUser } = getState()
-  fetch('/users', {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ selectedUser })
-  })
-  .then(res => res.json())
-  .then(users => dispatch(userSelected(users)))
-  .then(() => dispatch(getBuddies()))
-
-}
-
-const getBuddies = () => dispatch => {
-  fetch('/users/buddies', {
+const getBuddies = user => dispatch => {
+  fetch('/users/' + user + '/buddies', {
     headers: {
       'Accept': 'application/json'
     }
@@ -29,11 +14,8 @@ const getBuddies = () => dispatch => {
   .then(buddies => dispatch(buddiesLoaded(buddies)))
 }
 
-
-
 module.exports = {
-  selectUser,
-  changeUser,
-  accountView,
+  userSelected,
+  viewChanged,
   getBuddies
 }

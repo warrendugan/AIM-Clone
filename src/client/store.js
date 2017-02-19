@@ -8,13 +8,12 @@ const initialState = {
   users: [
     {
       id: null,
-      screenName: null,
-      selected: null
+      screenName: null
     }],
   currentView: null,
   selectedUser: null,
   searchValue: null,
-  buddies: null
+  buddies: []
 }
 
 const store = createStore(reducer, initialState, applyMiddleware(thunk))

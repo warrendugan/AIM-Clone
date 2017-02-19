@@ -24,16 +24,12 @@ router.put('/undo', (req, res) => {
 router.post('/addBuddy', ({ body }, res) => {
   users
     .addBuddy(body)
-    .then(buddies => res.status(201).json(buddies))
+    .then(buddyIds => res.status(201).json(buddyIds))
 })
 
-router.get('/buddies', (req, res) => {
+router.get('/:currentUser/buddies', ({ params }, res) => {
   users
-    .getBuddies()
-    .then(buddies => {
-      console.log(buddies) // eslint-disable-line
-      return buddies
-    })
+    .getBuddies(params)
     .then(buddies => res.status(201).json(buddies))
 })
 
