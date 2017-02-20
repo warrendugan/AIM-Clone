@@ -33,4 +33,10 @@ router.get('/:currentUser/buddies', ({ params }, res) => {
     .then(buddies => res.status(201).json(buddies))
 })
 
+router.post('/chat', ({ body }, res) => {
+  console.log(body) // eslint-disable-line
+  res.sendStatus(201)
+  // res.sendFile(__dirname, '../client/chatWindow')
+})
+
 module.exports = router

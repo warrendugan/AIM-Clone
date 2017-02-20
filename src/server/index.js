@@ -16,6 +16,9 @@ server.listen(PORT || 3000, () => {
   console.log(`Listening on port ${PORT || 3000}`) // eslint-disable-line
 })
 
-io.on('connection', () => {
+io.on('connection', socket => {
   console.log('got connected') // eslint-disable-line
+  socket.on('new window', () => {
+    console.log('new window almost ready') //eslint-disable-line
+  })
 })

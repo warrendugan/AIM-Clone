@@ -1,17 +1,17 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { userUnselected, searchEntered } = require('./actions')
+const { userUnselected, searchEntered, createChat } = require('./actions')
 const { viewChanged } = require('../login/actions')
 
-const Account = ({ searchValue, buddies, handleClick, handleChange }) => (
+const Account = ({ searchValue, buddies, handleBackClick, handleChatClick, handleChange }) => (
   <div>
-    <button onClick={ handleClick }>{' Back '}</button>
+    <button onClick={ handleBackClick }>{' Back '}</button>
     <img id="logo" src="./icons/login.png"/>
     <input onChange={ handleChange } id="search" type="text" autoFocus value={ searchValue ? searchValue : '' }/>
     <div id="buddie-list"> {
       buddies
         .map((buddy, i) => (
-          <div key={ i }> { buddy.screenName } </div>
+          <div onClick={ handleChatClick } id={ buddy.screenName } key={ i }> { buddy.screenName } </div>
         ))
     }
     </div>
@@ -28,9 +28,13 @@ const mapDispatch = dispatch => ({
       dispatch(viewChanged('SEARCH'))
     }
   },
-  handleClick: () => {
+  handleBackClick: () => {
     dispatch(userUnselected)
     dispatch(viewChanged('LOGIN'))
+  },
+  handleChatClick: event => {
+    const buddy = event.target.id
+    dispatch(createChat(buddy))
   }
 })
 
