@@ -1,3 +1,4 @@
+
 const React = require('react')
 const { connect } = require('react-redux')
 const { sendMessage } = require('./actions')
@@ -23,6 +24,7 @@ const Chat = ({ messages, handleBackClick, handleKeyPress, handleSubmit }) => (
 const mapState = ({ messages }) => ({ messages })
 
 const mapDispatch = dispatch => ({
+
   handleBackClick: () => {
     dispatch(viewChanged('ACCOUNT'))
   },

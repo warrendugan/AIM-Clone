@@ -70,7 +70,7 @@ select {
 }
 
 #buddy:hover {
-  border: 1px, solid lightgrey;
+  border: 1px solid lightgrey;
   cursor: default;
 }
 
@@ -87,6 +87,13 @@ select {
 .add-buddy {
   position: absolute;
   right: 0;
+}
+
+.buddy-name:hover {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  color: white;
+  background-color: blue;
 }
 
 #messages {

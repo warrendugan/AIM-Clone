@@ -6,16 +6,15 @@ const sendMessage = message => (dispatch, getState) => {
   const { currentUser, room } = getState()
 
   var { socket } = getState()
-  console.log(socket) // eslint-disable-line
   if(!socket) {
     socket = io.connect()
   }
 
   socket.emit('new message', ({ message, room }))
 
-  socket.on('message', ({ message }) => {
-    console.log(currentUser, 'got this', message) // eslint-disable-line
-    dispatch(messageSocketed(message))
+  socket.on('message', (data) => {
+    console.log(currentUser, 'got this', data) // eslint-disable-line
+    dispatch(messageSocketed(data))
   })
 }
 

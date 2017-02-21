@@ -11,7 +11,7 @@ const Account = ({ searchValue, buddies, handleBackClick, handleChatClick, handl
     <div id="buddie-list"> {
       buddies
         .map((buddy, i) => (
-          <div onClick={ handleChatClick } id={ buddy.screenName } key={ i }> { buddy.screenName } </div>
+          <div onClick={ handleChatClick } className="buddy-name" id={ buddy.screenName } key={ i }> { buddy.screenName } </div>
         ))
     }
     </div>

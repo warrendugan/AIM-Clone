@@ -34,7 +34,7 @@ const initialState = {
   buddies: [],
   messages: [],
   room: '',
-  socket: null
+  socket: {}
 }
 
 const store = createStore(reducer, initialState, applyMiddleware(thunk))
