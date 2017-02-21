@@ -1,6 +1,8 @@
 /* global io */
-const userUnselected = ({ type: 'USER-UNSELECTED'})
 
+const userUnselected = ({ type: 'USER-UNSELECTED'})
+const roomSubscribed = room => ({ type: 'ROOM-SUBSCRIBED', room })
+const socketCreated = socket => ({ type: 'SOCKET-CREATED', socket})
 const searchEntered = (value) => ({ type: 'SEARCH-ENTERED', value })
 
 const createChat = buddy => (dispatch, getState) => {
@@ -11,9 +13,13 @@ const createChat = buddy => (dispatch, getState) => {
     body: JSON.stringify({ buddy, selectedUser })
   })
   .then(() => {
-    console.log('made it back to create chat action') // eslint-disable-line
-    var socket = io.connect()
-    socket.emit('new window')
+    const socket = io.connect()
+    var room = [buddy, selectedUser]
+    room.sort()
+    room = room[0].concat(room[1])
+    socket.emit('subscribe', room)
+    dispatch(roomSubscribed(room))
+    dispatch(socketCreated(socket))
   })
 }
 

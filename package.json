@@ -9,6 +9,7 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "start": "node build/server/index.js & electron build/shell/index.js",
+    "start-electron": "electron build/shell/index.js",
     "build": "./scripts/build.sh",
     "dev": "run-s build start"
   },

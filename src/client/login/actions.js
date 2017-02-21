@@ -17,5 +17,6 @@ const getBuddies = user => dispatch => {
 module.exports = {
   userSelected,
   viewChanged,
-  getBuddies
+  getBuddies,
+  buddiesLoaded
 }

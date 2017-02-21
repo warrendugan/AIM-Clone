@@ -5,7 +5,7 @@ const { addBuddy } = require('./actions')
 const { viewChanged } = require('../login/actions')
 
 
-const Search = ({ users, searchValue, buddies, selectedUser, handleClick, handleChange }) => (
+const Search = ({ users, searchValue, buddyIds, selectedUser, handleClick, handleChange }) => (
   <div>
     <button value="goBack" onClick={ handleClick }>{' Back '}</button>
     <img id="small-logo" src="./icons/login.png"/>
@@ -17,10 +17,10 @@ const Search = ({ users, searchValue, buddies, selectedUser, handleClick, handle
         .map((user, i) => (
           <div id="result" key={ i }>
             <div id="buddy"> { user.screenName } </div>
-            <i onClick={ handleClick } id={ user.screenName } className="add-buddy material-icons"> {
-              buddies
-                .reduce((idsOnly, buddy) => idsOnly.concat(buddy.id), [])
-                .map(buddy => (buddy.id === user.id) ? "ic_check" : "add_box")
+            <i onClick={ handleClick } key={ 10 } id={ user.screenName } className="add-buddy material-icons"> {
+              buddyIds.includes(user.id)
+                ? "ic_check"
+                : "add_box"
             }</i>
           </div>
         ))}
@@ -28,7 +28,17 @@ const Search = ({ users, searchValue, buddies, selectedUser, handleClick, handle
   </div>
 )
 
-const mapState = ({ users, searchValue, buddies, selectedUser }) => ({ users, searchValue, buddies, selectedUser })
+const mapState = ({ users, searchValue, buddies, selectedUser }) => {
+  const buddyIds = buddies.reduce((idsOnly, buddy) => {
+    return idsOnly.concat(buddy.id)
+  }, [])
+   return {
+     users,
+     searchValue,
+     buddyIds,
+     selectedUser
+   }
+ }
 
 const mapDispatch = dispatch => ({
   handleChange: event => {

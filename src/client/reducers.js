@@ -61,3 +61,36 @@ exports.buddies = (state = [], action) => {
     }
   }
 }
+
+exports.messages = (state = [], action) => {
+  switch(action.type) {
+    case 'MESSAGE-SOCKETED': {
+      return state.concat(action.message)
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+exports.room = (state = '', action) => {
+  switch(action.type) {
+    case 'ROOM-SUBSCRIBED': {
+      return action.room
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+exports.socket = (state = null, action) => {
+  switch(action.type) {
+    case 'SOCKET-CREATED': {
+      return action.socket
+    }
+    default: {
+      return state
+    }
+  }
+}

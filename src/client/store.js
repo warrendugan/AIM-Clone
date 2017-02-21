@@ -1,8 +1,26 @@
 const { createStore, combineReducers, applyMiddleware } = require('redux')
-const { users, currentView, selectedUser, searchValue, buddies } = require('./reducers')
+const {
+  users,
+  currentView,
+  selectedUser,
+  searchValue,
+  buddies,
+  messages,
+  room,
+  socket
+} = require('./reducers')
 const { default: thunk } = require('redux-thunk')
 
-const reducer = combineReducers({ users, currentView, selectedUser, searchValue, buddies })
+const reducer = combineReducers({
+  users,
+  currentView,
+  selectedUser,
+  searchValue,
+  buddies,
+  messages,
+  room,
+  socket
+})
 
 const initialState = {
   users: [
@@ -13,7 +31,10 @@ const initialState = {
   currentView: null,
   selectedUser: null,
   searchValue: null,
-  buddies: []
+  buddies: [],
+  messages: [],
+  room: '',
+  socket: null
 }
 
 const store = createStore(reducer, initialState, applyMiddleware(thunk))

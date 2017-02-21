@@ -35,6 +35,7 @@ const mapDispatch = dispatch => ({
   handleChatClick: event => {
     const buddy = event.target.id
     dispatch(createChat(buddy))
+    dispatch(viewChanged('CHAT'))
   }
 })
 

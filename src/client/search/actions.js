@@ -1,4 +1,4 @@
-const buddyAdded = buddies => ({ type: 'BUDDY-ADDED', buddies})
+const { getBuddies } = require('../login/actions')
 
 const addBuddy = buddy => (dispatch, getState) => {
   const { selectedUser } = getState()
@@ -8,7 +8,7 @@ const addBuddy = buddy => (dispatch, getState) => {
     body: JSON.stringify({ buddy, selectedUser })
   })
   .then(res => res.json())
-  .then(buddies => dispatch(buddyAdded(buddies)))
+  .then(() => getBuddies(selectedUser))
 }
 
 module.exports = {
