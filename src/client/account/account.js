@@ -1,6 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { userUnselected, searchEntered, createChat } = require('./actions')
+const { userUnselected, searchEntered } = require('./actions')
+const { createChatRoom } = require('../chat/actions')
 const { viewChanged } = require('../login/actions')
 
 const Account = ({ searchValue, buddies, handleBackClick, handleChatClick, handleChange }) => (
@@ -34,7 +35,7 @@ const mapDispatch = dispatch => ({
   },
   handleChatClick: event => {
     const buddy = event.target.id
-    dispatch(createChat(buddy))
+    dispatch(createChatRoom(buddy))
     dispatch(viewChanged('CHAT'))
   }
 })

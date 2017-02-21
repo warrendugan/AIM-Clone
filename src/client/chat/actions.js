@@ -1,23 +1,40 @@
 /* global io */
 
+const roomSubscribed = room => ({ type: 'ROOM-SUBSCRIBED', room })
+
 const messageSocketed = message => ({ type: 'MESSAGE-SOCKETED', message })
 
-const sendMessage = message => (dispatch, getState) => {
-  const { currentUser, room } = getState()
+const socket = io.connect()
 
-  var { socket } = getState()
-  if(!socket) {
-    socket = io.connect()
-  }
-
-  socket.emit('new message', ({ message, room }))
-
-  socket.on('message', (data) => {
-    console.log(currentUser, 'got this', data) // eslint-disable-line
-    dispatch(messageSocketed(data))
-  })
+const createChatRoom = buddy => (dispatch, getState) => {
+  const { selectedUser } = getState()
+  var room = [buddy, selectedUser]
+  room.sort()
+  room = room[0].concat(room[1])
+  socket.emit('subscribe', room)
+  dispatch(roomSubscribed(room))
 }
 
+const sendMessage = message => (dispatch, getState) => {
+  const { room } = getState()
+
+  socket.emit('message from client', ({ message, room }))
+
+}
+
+const receiveMessage = message => dispatch => {
+  dispatch(messageSocketed(message))
+
+}
+
+socket.on('message from server', message => {
+  console.log('got this', message) // eslint-disable-line
+  receiveMessage(message)
+})
+
+
 module.exports = {
-  sendMessage
+  sendMessage,
+  receiveMessage,
+  createChatRoom
 }

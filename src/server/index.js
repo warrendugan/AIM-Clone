@@ -21,8 +21,8 @@ io.on('connection', socket => {
     console.log('joining room ', room) // eslint-disable-line
     socket.join(room) // eslint-disable-line
   })
-  socket.on('new message', ({ message, room }) => {
+  socket.on('message from client', ({ message, room }) => {
     console.log('new message', message, room) // eslint-disable-line
-    socket.to(room).emit('message', message)
+    socket.to(room).emit('message from server', message)
   })
 })

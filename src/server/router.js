@@ -33,8 +33,4 @@ router.get('/:currentUser/buddies', ({ params }, res) => {
     .then(buddies => res.status(201).json(buddies))
 })
 
-router.post('/chat', ({ body }, res) => {
-  res.sendStatus(201)
-})
-
 module.exports = router
