@@ -1,5 +1,7 @@
 /* global io */
 
+const store = require('../store')
+
 const roomSubscribed = room => ({ type: 'ROOM-SUBSCRIBED', room })
 
 const messageSocketed = message => ({ type: 'MESSAGE-SOCKETED', message })
@@ -29,7 +31,8 @@ const receiveMessage = message => dispatch => {
 
 socket.on('message from server', message => {
   console.log('got this', message) // eslint-disable-line
-  receiveMessage(message)
+  // receiveMessage(message)
+  store.dispatch({ type: 'MESSAGE-SOCKETED', message })
 })
 
 
