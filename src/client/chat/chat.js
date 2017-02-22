@@ -4,12 +4,13 @@ const { connect } = require('react-redux')
 const { sendMessage } = require('./actions')
 const { viewChanged } = require('../login/actions')
 
-const Chat = ({ messages, handleBackClick, handleKeyPress, handleSubmit }) => (
+const Chat = ({ messages, room, handleBackClick, handleKeyPress, handleSubmit }) => (
   <div>
     <button onClick={ handleBackClick }>{' Back '}</button>
+    <div id="room">{ 'Chatroom Name:' + room }</div>
     <div id="chat">
       <div id="messages">{
-        messages.map((message, i) => (<div key={ i }>{ message } </div>))
+        messages.map((message, i) => (<div className="message" key={ i }>{ message } </div>))
       }</div>
       <form onSubmit={ handleSubmit } >
         <div id="input-area">
@@ -21,18 +22,17 @@ const Chat = ({ messages, handleBackClick, handleKeyPress, handleSubmit }) => (
   </div>
 )
 
-const mapState = ({ messages }) => ({ messages })
+const mapState = ({ messages, room }) => ({ messages, room })
 
 const mapDispatch = dispatch => ({
-
   handleBackClick: () => {
     dispatch(viewChanged('ACCOUNT'))
   },
   handleKeyPress: event => {
     if(event.key === 'Enter') {
-      const message = event.target.value
+      const message = event.target.value.replace(/(\r\n|\n|\r)/gm,"")
       dispatch(sendMessage(message))
-
+      event.target.value = ''
     }
   },
   handleSubmit: event => {

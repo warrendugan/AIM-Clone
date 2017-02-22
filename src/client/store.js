@@ -6,8 +6,7 @@ const {
   searchValue,
   buddies,
   messages,
-  room,
-  socket
+  room
 } = require('./reducers')
 const { default: thunk } = require('redux-thunk')
 
@@ -18,8 +17,7 @@ const reducer = combineReducers({
   searchValue,
   buddies,
   messages,
-  room,
-  socket
+  room
 })
 
 const initialState = {
@@ -33,8 +31,7 @@ const initialState = {
   searchValue: null,
   buddies: [],
   messages: [],
-  room: '',
-  socket: {}
+  room: ''
 }
 
 // const store = createStore(reducer, initialState, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

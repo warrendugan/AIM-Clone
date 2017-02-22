@@ -83,14 +83,3 @@ exports.room = (state = '', action) => {
     }
   }
 }
-
-exports.socket = (state = null, action) => {
-  switch(action.type) {
-    case 'SOCKET-CREATED': {
-      return action.socket
-    }
-    default: {
-      return state
-    }
-  }
-}

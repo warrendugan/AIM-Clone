@@ -9,18 +9,6 @@ router.get('/', (req, res) => {
     .then(users => res.json(users))
 })
 
-router.put('/', ({ body }, res) => {
-  users
-    .selectUser(body)
-    .then(users => res.status(200).json(users))
-})
-
-router.put('/undo', (req, res) => {
-  users
-    .deselectUser()
-    .then(users => res.status(200).json(users))
-})
-
 router.post('/addBuddy', ({ body }, res) => {
   users
     .addBuddy(body)

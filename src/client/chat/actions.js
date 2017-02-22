@@ -18,26 +18,18 @@ const createChatRoom = buddy => (dispatch, getState) => {
 }
 
 const sendMessage = message => (dispatch, getState) => {
-  const { room } = getState()
+  const { room, selectedUser } = getState()
 
-  socket.emit('message from client', ({ message, room }))
-
+  socket.emit('message from client', ({ message, room , selectedUser}))
+  dispatch(messageSocketed('me: ' + message))
 }
 
-const receiveMessage = message => dispatch => {
-  dispatch(messageSocketed(message))
-
-}
-
-socket.on('message from server', message => {
-  console.log('got this', message) // eslint-disable-line
-  // receiveMessage(message)
-  store.dispatch({ type: 'MESSAGE-SOCKETED', message })
+socket.on('message from server', ({ message, sender }) => {
+  store.dispatch(messageSocketed(sender + ': ' + message))
 })
 
 
 module.exports = {
   sendMessage,
-  receiveMessage,
   createChatRoom
 }

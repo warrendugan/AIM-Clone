@@ -10,6 +10,7 @@
     "seed": "knex seed:run",
     "start": "node build/server/index.js & electron build/shell/index.js",
     "start-electron": "electron build/shell/index.js",
+    "electron-w": "electron src/shell/index.js --watch",
     "build": "./scripts/build.sh",
     "dev": "run-s build start"
   },
