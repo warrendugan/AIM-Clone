@@ -70,7 +70,7 @@ select {
 }
 
 #buddy:hover {
-  border: 1px, solid lightgrey;
+  border: 1px solid lightgrey;
   cursor: default;
 }
 
@@ -87,4 +87,56 @@ select {
 .add-buddy {
   position: absolute;
   right: 0;
+}
+
+.buddy-name:hover {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  color: white;
+  background-color: blue;
+}
+
+#messages {
+  margin-top: 20px;
+  height: 300px;
+}
+
+.message {
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+#messages,
+#input-area {
+  width: 95%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 1px solid lightgrey;
+}
+
+#input-area {
+  margin-top: 10px;
+  height: 100px;
+}
+
+#type {
+  height: 100%;
+  width: 100%;
+  resize: none;
+  padding: 0;
+}
+
+#type:focus {
+  outline: black;
+}
+
+#room {
+  font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
 }

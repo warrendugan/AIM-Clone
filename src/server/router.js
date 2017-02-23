@@ -9,31 +9,15 @@ router.get('/', (req, res) => {
     .then(users => res.json(users))
 })
 
-router.put('/', ({ body }, res) => {
-  users
-    .selectUser(body)
-    .then(users => res.status(200).json(users))
-})
-
-router.put('/undo', (req, res) => {
-  users
-    .deselectUser()
-    .then(users => res.status(200).json(users))
-})
-
 router.post('/addBuddy', ({ body }, res) => {
   users
     .addBuddy(body)
-    .then(buddies => res.status(201).json(buddies))
+    .then(buddyIds => res.status(201).json(buddyIds))
 })
 
-router.get('/buddies', (req, res) => {
+router.get('/:currentUser/buddies', ({ params }, res) => {
   users
-    .getBuddies()
-    .then(buddies => {
-      console.log(buddies) // eslint-disable-line
-      return buddies
-    })
+    .getBuddies(params)
     .then(buddies => res.status(201).json(buddies))
 })
 

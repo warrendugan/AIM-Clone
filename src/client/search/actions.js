@@ -1,18 +1,16 @@
-const accountView = ({ type: 'VIEW-CHANGED', view: 'ACCOUNT' })
+const { getBuddies } = require('../login/actions')
 
-const buddyAdded = buddies => ({ type: 'BUDDY-ADDED', buddies})
-
-const addBuddy = buddy => dispatch => {
+const addBuddy = buddy => (dispatch, getState) => {
+  const { selectedUser } = getState()
   fetch('/users/addBuddy', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ buddy })
+    body: JSON.stringify({ buddy, selectedUser })
   })
   .then(res => res.json())
-  .then(buddies => dispatch(buddyAdded(buddies)))
+  .then(() => getBuddies(selectedUser))
 }
 
 module.exports = {
-  accountView,
   addBuddy
 }

@@ -9,6 +9,8 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "start": "node build/server/index.js & electron build/shell/index.js",
+    "start-electron": "electron build/shell/index.js",
+    "electron-w": "electron src/shell/index.js --watch",
     "build": "./scripts/build.sh",
     "dev": "run-s build start"
   },
@@ -32,7 +34,8 @@
     "eslint": "^3.15.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-react": "^6.9.0",
-    "npm-run-all": "^4.0.1"
+    "npm-run-all": "^4.0.1",
+    "socket.io": "^1.7.3"
   },
   "dependencies": {
     "body-parser": "^1.16.0",

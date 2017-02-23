@@ -1,26 +1,25 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { deselectUser, loginView, addSearchText, searchView } = require('../account/actions')
-const { accountView, addBuddy } = require('./actions')
+const { searchEntered } = require('../account/actions')
+const { addBuddy } = require('./actions')
+const { viewChanged } = require('../login/actions')
 
 
-const Search = ({ users, handleClick, handleChange, searchValue, buddies }) => (
+const Search = ({ users, searchValue, buddyIds, selectedUser, handleClick, handleChange }) => (
   <div>
     <button value="goBack" onClick={ handleClick }>{' Back '}</button>
     <img id="small-logo" src="./icons/login.png"/>
     <input onChange={ handleChange } id="search" type="text" value={ searchValue } autoFocus/>
     <div id="results"> {
       users
-        .filter(user => (user.selected ? null : user))
+        .filter(user => ((user.screenName === selectedUser) ? null : user))
         .filter(user => ((user.screenName.indexOf(searchValue) > -1) ? user : null))
         .map((user, i) => (
           <div id="result" key={ i }>
             <div id="buddy"> { user.screenName } </div>
-            <i onClick={ handleClick } id={ user.screenName } className="add-buddy material-icons">{
-              buddies
-                ? (buddies.indexOf(user.id) > -1)
-                  ? "ic_check"
-                  : "add_box"
+            <i onClick={ handleClick } key={ 10 } id={ user.screenName } className="add-buddy material-icons"> {
+              buddyIds.includes(user.id)
+                ? "ic_check"
                 : "add_box"
             }</i>
           </div>
@@ -29,24 +28,32 @@ const Search = ({ users, handleClick, handleChange, searchValue, buddies }) => (
   </div>
 )
 
-const mapState = ({ users, searchValue, buddies }) => ({ users, searchValue, buddies })
+const mapState = ({ users, searchValue, buddies, selectedUser }) => {
+  const buddyIds = buddies.reduce((idsOnly, buddy) => {
+    return idsOnly.concat(buddy.id)
+  }, [])
+   return {
+     users,
+     searchValue,
+     buddyIds,
+     selectedUser
+   }
+ }
 
 const mapDispatch = dispatch => ({
   handleChange: event => {
     const searchText = event.target.value.trim()
     if(searchText) {
-      dispatch(addSearchText(searchText))
-      dispatch(searchView)
+      dispatch(searchEntered(searchText))
     } else {
-      dispatch(addSearchText(searchText))
-      dispatch(accountView)
+      dispatch(searchEntered(searchText))
+      dispatch(viewChanged('ACCOUNT'))
     }
   },
   handleClick: event => {
     if(event.target.value === "goBack") {
-      dispatch(addSearchText(''))
-      dispatch(deselectUser())
-      dispatch(loginView)
+      dispatch(searchEntered(''))
+      dispatch(viewChanged('ACCOUNT'))
     } else {
       const buddy = event.target.id
       dispatch(addBuddy(buddy))

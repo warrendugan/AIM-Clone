@@ -3,6 +3,7 @@ const { connect } = require('react-redux')
 const Login = require('./login')
 const Account = require('./account')
 const Search = require('./search')
+const Chat = require('./chat')
 
 const mapState = ({ currentView }) => ({ currentView })
 
@@ -16,6 +17,9 @@ const View = ({ currentView }) => {
     }
     case 'SEARCH': {
       return <Search/>
+    }
+    case 'CHAT': {
+      return <Chat/>
     }
     default: {
       console.log('Landed in default') // eslint-disable-line

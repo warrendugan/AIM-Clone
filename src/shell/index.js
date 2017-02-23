@@ -29,8 +29,8 @@ const createWindow = () => {
       label: 'Toggle DevTools',
       accelerator: 'Alt+Command+I',
       click: function() {
-        mainWindow.show();
-        mainWindow.toggleDevTools();
+        mainWindow.show()
+        mainWindow.toggleDevTools()
       }
     },
     {
