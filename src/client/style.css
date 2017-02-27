@@ -69,11 +69,6 @@ select {
   margin-bottom: 5px;
 }
 
-#buddy:hover {
-  border: 1px solid lightgrey;
-  cursor: default;
-}
-
 #buddy,
 .add-buddy {
   display: inline-block;
@@ -87,6 +82,7 @@ select {
 .add-buddy {
   position: absolute;
   right: 0;
+  transform: translateY(-20%);
 }
 
 .buddy-name:hover {
