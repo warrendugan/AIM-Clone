@@ -8,7 +8,7 @@ const addBuddy = buddy => (dispatch, getState) => {
     body: JSON.stringify({ buddy, selectedUser })
   })
   .then(res => res.json())
-  .then(() => getBuddies(selectedUser))
+  .then(() => dispatch(getBuddies(selectedUser)))
 }
 
 module.exports = {

@@ -50,9 +50,6 @@ exports.buddies = (state = [], action) => {
     case 'BUDDIES-LOADED': {
       return action.buddies
     }
-    case 'BUDDY-ADDED': {
-      return action.buddies
-    }
     case 'USER-UNSELECTED': {
       return []
     }
