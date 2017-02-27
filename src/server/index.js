@@ -18,7 +18,7 @@ server.listen(PORT || 3000, () => {
 
 io.on('connection', socket => {
   socket.on('subscribe', room => {
-    socket.join(room) // eslint-disable-line
+    socket.join(room)
   })
   socket.on('message from client', ({ message, room, selectedUser: sender }) => {
     socket.to(room).emit('message from server', ({ message, sender }))

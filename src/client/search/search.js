@@ -5,9 +5,9 @@ const { addBuddy } = require('./actions')
 const { viewChanged } = require('../login/actions')
 
 
-const Search = ({ users, searchValue, buddyIds, selectedUser, handleClick, handleChange }) => (
+const Search = ({ users, searchValue, buddyIds, selectedUser, handleBackClick, handleAddClick, handleChange }) => (
   <div>
-    <button value="goBack" onClick={ handleClick }>{' Back '}</button>
+    <button value="goBack" onClick={ handleBackClick }>{' Back '}</button>
     <img id="small-logo" src="./icons/login.png"/>
     <input onChange={ handleChange } id="search" type="text" value={ searchValue } autoFocus/>
     <div id="results"> {
@@ -17,7 +17,7 @@ const Search = ({ users, searchValue, buddyIds, selectedUser, handleClick, handl
         .map((user, i) => (
           <div id="result" key={ i }>
             <div id="buddy"> { user.screenName } </div>
-            <i onClick={ handleClick } key={ 10 } id={ user.screenName } className="add-buddy material-icons"> {
+            <i onClick={ handleAddClick } key={ i } id={ user.screenName } className="add-buddy material-icons"> {
               buddyIds.includes(user.id)
                 ? "ic_check"
                 : "add_box"
@@ -50,14 +50,13 @@ const mapDispatch = dispatch => ({
       dispatch(viewChanged('ACCOUNT'))
     }
   },
-  handleClick: event => {
-    if(event.target.value === "goBack") {
+  handleBackClick: () => {
       dispatch(searchEntered(''))
       dispatch(viewChanged('ACCOUNT'))
-    } else {
-      const buddy = event.target.id
-      dispatch(addBuddy(buddy))
-    }
+  },
+  handleAddClick: event => {
+    const buddy = event.target.id
+    dispatch(addBuddy(buddy))
   }
 })
 
