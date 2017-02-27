@@ -1,6 +1,4 @@
 # AIMing For Success
-- An AOL Instant Messenger Clone
+- An AOL Instant Messenger App using Electron
 
-An electron app clone of AIM
-
-![Throwback](http://i.imgur.com/HXtCS3w.png)
+![aimhi-gif](https://cloud.githubusercontent.com/assets/23459839/23345750/db70c602-fc47-11e6-8c5f-063b71eed3a4.gif)
